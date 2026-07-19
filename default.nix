@@ -1,5 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 {
-  solc = pkgs.callPackage ./pkgs/solc.nix { };
+  overlay = import ./overlay.nix;
+  solc = pkgs.callPackage ./pkgs/solc { };
+  foundry = pkgs.callPackage ./pkgs/foundry { };
 }

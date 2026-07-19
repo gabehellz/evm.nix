@@ -12,8 +12,6 @@
 
       packages = forAllSystems (system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system});
 
-      overlays.default = (final: prev: {
-        solc = final.callPackage ./pkgs/solc.nix { };
-      });
+      overlays.default = import ./overlay.nix;
     };
 }
