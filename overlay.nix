@@ -2,7 +2,7 @@
   solc = final.callPackage ./pkgs/solc { };
   svm-lists = final.callPackage ./pkgs/svm-lists { };      
   foundry = final.callPackage ./pkgs/foundry { };
-  halmos = final.callPackage ./pkgs/halmos { };
+  halmos = final.python3Packages.callPackage ./pkgs/halmos { };
   aderyn = final.callPackage ./pkgs/aderyn { };
-  slither = final.callPackage ./pkgs/slither { };
+  slither = final.python3Packages.callPackage ./pkgs/slither { };
 })

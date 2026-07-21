@@ -1,12 +1,27 @@
 {
   lib,
-  python3,
+  buildPythonPackage,
   fetchFromGitHub,
   fetchPypi,
-  which
+  setuptools,
+  setuptools-scm,
+  poetry-core,
+  markdown-it-py,
+  pygments,
+  ipywidgets,
+  attrs,
+  which,
+  sortedcontainers,
+  toml,
+  z3-solver,
+  eth-hash,
+  xxhash,
+  psutil,
+  requests,
+  python-dotenv
 }:
 let
-  yices-solver = python3.pkgs.buildPythonPackage rec {
+  yices-solver = buildPythonPackage rec {
     pname = "yices-solver";
     version = "2.6.4";
     pyproject = true;
@@ -18,7 +33,7 @@ let
       hash = "sha256-a5H3GCSd9VLvo292XNDPvY5LlwI3zXAKcI9CDeJIIsw=";
     };
 
-    build-system = with python3.pkgs; [
+    build-system =  [
       setuptools
       setuptools-scm
     ];
@@ -32,7 +47,7 @@ let
     };
   };
 
-  rich = python3.pkgs.buildPythonPackage rec {
+  rich = buildPythonPackage rec {
     pname = "rich";
     version = "14.0.0";
     pyproject = true;
@@ -44,20 +59,23 @@ let
       hash = "sha256-gnKzb4lw4zgepTfJahHnpw2/vcg8o1kv8KfeVDSHcQI=";
     };
 
-    build-system = with python3.pkgs; [ poetry-core ];
+    build-system = [ poetry-core ];
 
     doCheck = false;
 
-    dependencies = with python3.pkgs; [
+    dependencies = [
       markdown-it-py
       pygments
     ];
 
     optional-dependencies = {
-      jupyter = with python3.pkgs; [ ipywidgets ];
+      jupyter = [ ipywidgets ];
     };
 
-    nativeCheckInputs = with python3.pkgs; [ attrs ] ++ [ which ];
+    nativeCheckInputs = [
+      attrs
+      which
+    ];
 
     meta = {
       description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal";
@@ -66,7 +84,7 @@ let
       license = lib.licenses.mit;
     };
   };
-in python3.pkgs.buildPythonPackage rec {
+in buildPythonPackage rec {
   pname = "halmos";
   version = "0.3.3";
   pyproject = true;
@@ -79,14 +97,14 @@ in python3.pkgs.buildPythonPackage rec {
   doCheck = false;
   doInstallCheck = true;
 
-  build-system = with python3.pkgs; [
+  build-system = [
     setuptools
     setuptools-scm
   ];
 
   pythonRemoveDeps = [ "z3-solver" ];
 
-  dependencies = with python3.pkgs; [
+  dependencies = [
     sortedcontainers
     toml
     z3-solver
@@ -95,7 +113,9 @@ in python3.pkgs.buildPythonPackage rec {
     psutil
     requests
     python-dotenv
-  ] ++ [ rich yices-solver ] ++ z3-solver.requiredPythonModules;
+    rich
+    yices-solver
+  ] ++ z3-solver.requiredPythonModules;
 
   installCheckPhase = ''
     $out/bin/halmos --version > /dev/null

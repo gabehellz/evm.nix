@@ -1,10 +1,19 @@
 {
   lib,
-  python3,
-  fetchFromGitHub
+  buildPythonPackage,
+  fetchFromGitHub,
+  hatchling,
+  packaging,
+  prettytable,
+  pycryptodome,
+  crytic-compile,
+  web3,
+  eth-abi,
+  eth-typing,
+  eth-utils
 }:
 
-python3.pkgs.buildPythonPackage rec {
+buildPythonPackage rec {
   pname = "slither";
   version = "0.11.5";
   pyproject = true;
@@ -16,12 +25,12 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-sy1vE9XniwyvvZRFnnKhPfmYh2auHHcMel9sZx2YK3c=";
   };
 
-  build-system = with python3.pkgs; [ hatchling ];
+  build-system = [ hatchling ];
 
   doCheck = false;
   doInstallCheck = true;
 
-  dependencies = with python3.pkgs; [
+  dependencies = [
     packaging
     prettytable
     pycryptodome
