@@ -9,8 +9,9 @@
 
 {
   solc = pkgs.callPackage ./pkgs/solc { };
+  svm-lists = pkgs.callPackage ./pkgs/svm-lists { };
   foundry = pkgs.callPackage ./pkgs/foundry { };
   halmos = pkgs.callPackage ./pkgs/halmos { };
   aderyn = pkgs.callPackage ./pkgs/aderyn { };
-  svm-lists = pkgs.callPackage ./pkgs/svm-lists { };
+  slither = pkgs.callPackage ./pkgs/slither { };
 }

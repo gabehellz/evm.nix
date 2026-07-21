@@ -4,4 +4,5 @@
   foundry = final.callPackage ./pkgs/foundry { };
   halmos = final.callPackage ./pkgs/halmos { };
   aderyn = final.callPackage ./pkgs/aderyn { };
+  slither = final.callPackage ./pkgs/slither { };
 })
