@@ -77,6 +77,7 @@ in python3.pkgs.buildPythonPackage rec {
   };
 
   doCheck = false;
+  doInstallCheck = true;
 
   build-system = with python3.pkgs; [
     setuptools
@@ -95,6 +96,10 @@ in python3.pkgs.buildPythonPackage rec {
     requests
     python-dotenv
   ] ++ [ rich yices-solver ] ++ z3-solver.requiredPythonModules;
+
+  installCheckPhase = ''
+    $out/bin/halmos --version > /dev/null
+  '';
   
   meta = {
     description = "A symbolic testing tool for EVM smart contracts";

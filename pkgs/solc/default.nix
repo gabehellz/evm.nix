@@ -39,9 +39,7 @@ gccStdenv.mkDerivation rec {
   ];
 
   installCheckPhase = ''
-    runHook preInstallCheck
     $out/bin/solc --version > /dev/null
-    runHook postInstallCheck
   '';
   
   meta = {
