@@ -1,6 +1,6 @@
 # evm.nix
 
-EVM Nix overlay.
+Nix overlay for tools and software used in EVM smart contracts.
 
 ## Packages
 
@@ -13,9 +13,7 @@ Packages included in this overlay:
 - [x] [aderyn](https://github.com/Cyfrin/aderyn)
 - [ ] [echidna](https://github.com/crytic/echidna)
 
-## Usage
-
-### Using [devenv](https://devenv.sh/) (recommended)
+## Usage: [devenv](https://devenv.sh/) (recommended)
 
 Initialize `devenv.nix` and `devenv.yaml` files in your solidity project root:
 
@@ -78,7 +76,7 @@ $ direnv allow
 
 To automatically enter the developer environment every time you enter this directory.
 
-### Using flakes
+## Usage: flakes
 
 Initialize a `flake.nix` file in your solidity project root:
 
@@ -141,7 +139,7 @@ $ direnv allow
 
 To automatically enter the dev shell every time you enter this directory.
 
-### Using nix
+## Usage: nix
 
 Create a `default.nix` file with the following content:
 
@@ -181,3 +179,10 @@ $ direnv allow
 ```
 
 To automatically enter the created shell environment every time you enter this directory.
+
+## Related
+
+EVM-related nix overlays:
+- https://github.com/hellwolf/solc.nix
+- https://github.com/shazow/foundry.nix
+- https://github.com/nix-community/ethereum.nix
