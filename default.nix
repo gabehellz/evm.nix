@@ -1,17 +1,8 @@
-{
-  pkgs ? import <nixpkgs> {
-    overlays = [
-      (import ./overlay.nix)
-      (import (fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
-    ];
-  }
-}:
-
-{
-  solc = pkgs.callPackage ./pkgs/solc { };
-  svm-lists = pkgs.callPackage ./pkgs/svm-lists { };
-  foundry = pkgs.callPackage ./pkgs/foundry { };
-  halmos = pkgs.python3Packages.callPackage ./pkgs/halmos { };
-  aderyn = pkgs.callPackage ./pkgs/aderyn { };
-  slither = pkgs.python3Packages.callPackage ./pkgs/slither { };
-}
+(final: prev: {
+  solc = final.callPackage ./pkgs/solc { };
+  svm-lists = final.callPackage ./pkgs/svm-lists { };      
+  foundry = final.callPackage ./pkgs/foundry { };
+  halmos = final.python3Packages.callPackage ./pkgs/halmos { };
+  aderyn = final.callPackage ./pkgs/aderyn { };
+  slither = final.python3Packages.callPackage ./pkgs/slither { };
+})
