@@ -140,3 +140,44 @@ $ direnv allow
 ```
 
 To automatically enter the dev shell every time you enter this directory.
+
+### Using nix
+
+Create a `default.nix` file with the following content:
+
+``` shell
+# default.nix
+with import <nixpkgs> {
+  overlays = [
+    (import (fetchTarball "https://github.com/gabehellz/evm.nix/archive/master.tar.gz"))
+  ];
+};
+
+mkShell {
+  buildInputs = [
+    solc
+    foundry
+  ];
+}
+```
+
+Now, enter the created shell environment:
+
+``` shell
+nix-shell
+```
+
+Or, if you want to use [nix-direnv](https://github.com/nix-community/nix-direnv), create a `.envrc` file with the following content:
+
+``` shell
+#!/usr/bin/env bash
+use nix .
+```
+
+And run:
+
+``` shell
+$ direnv allow
+```
+
+To automatically enter the created shell environment every time you enter this directory.
