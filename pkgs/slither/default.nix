@@ -15,14 +15,14 @@
 
 buildPythonPackage rec {
   pname = "slither";
-  version = "0.11.5";
+  version = "0.11.6";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "crytic";
     repo = "slither";
     tag = version;
-    hash = "sha256-sy1vE9XniwyvvZRFnnKhPfmYh2auHHcMel9sZx2YK3c=";
+    hash = "sha256-Uo6mwJ9keG3tUMvh4v0MEJWJ1WStGxvzzh3PmHy/gCs=";
   };
 
   build-system = [ hatchling ];

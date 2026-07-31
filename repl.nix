@@ -7,11 +7,19 @@
   }
 }:
 
+let
+  pythonPackages = pkgs.python3Packages.overrideScope (final: prev: {
+    uv-build_0_9_30 = final.callPackage ./pkgs/uv-build_0_9_30 { };
+    crytic-compile = final.callPackage ./pkgs/crytic-compile { };
+  });
+in
 {
   solc = pkgs.callPackage ./pkgs/solc { };
   svm-lists = pkgs.callPackage ./pkgs/svm-lists { };
   foundry = pkgs.callPackage ./pkgs/foundry { };
-  halmos = pkgs.python3Packages.callPackage ./pkgs/halmos { };
   aderyn = pkgs.callPackage ./pkgs/aderyn { };
-  slither = pkgs.python3Packages.callPackage ./pkgs/slither { };
+
+  # Python Packages
+  halmos = pythonPackages.callPackage ./pkgs/halmos { };
+  slither = pythonPackages.callPackage ./pkgs/slither { };
 }
