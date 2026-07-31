@@ -1,7 +1,7 @@
 (final: prev:
   let
     pythonPackages = final.python3Packages.overrideScope (fp: pv: {
-      uv-build_0_9_30 = final.callPackage ./pkgs/uv-build_0_9_30 { };
+      uv-build_0_9_30 = fp.callPackage ./pkgs/uv-build_0_9_30 { };
       crytic-compile = fp.callPackage ./pkgs/crytic-compile { };
     });
   in
