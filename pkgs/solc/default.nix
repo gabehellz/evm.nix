@@ -12,11 +12,11 @@
 
 gccStdenv.mkDerivation rec {
   pname = "solc";
-  version = "0.8.36";
+  version = "0.8.37";
 
   src = fetchzip {
-    url = "https://github.com/argotorg/solidity/releases/download/v0.8.36/solidity_0.8.36.tar.gz";
-    hash = "sha256-qIChFkTTmHklgj06fYvn6Ghi9ZW4rlyY/lvfMWxyVlk=";
+    url = "https://github.com/argotorg/solidity/releases/download/v0.8.37/solidity_0.8.37.tar.gz";
+    hash = "sha256-RQmyCTM8Fzkh3J7vkMKd6ZGcTojmSM4RjALaPsJ0rDE=";
   };
 
   doInstallCheck = true;
