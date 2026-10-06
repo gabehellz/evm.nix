@@ -1,6 +1,7 @@
 {
   lib,
-  rustPlatform,
+  makeRustPlatform,
+  rust-bin,
   fetchFromGitHub,
   installShellFiles,
   pkg-config,
@@ -14,19 +15,24 @@ let
     "anvil"
     "forge"
   ];
+
+  rustPlatform = makeRustPlatform {
+    cargo = rust-bin.stable.latest.default;
+    rustc = rust-bin.stable.latest.default;
+  };
   
 in rustPlatform.buildRustPackage rec {
   pname = "foundry";
-  version = "1.7.1";
+  version = "1.8.5";
 
   src = fetchFromGitHub {
     owner = "foundry-rs";
     repo = pname;
     tag = "v${version}";
-    hash = "sha256-pS0V7AbSVowKXWfmk4TM9HyEVO1GL+FCZgdmpCfGcmM=";
+    hash = "sha256-9z0Mz2oTxDt3AeJm8wrSmNRgKhds5TD57nVEFsZH0y4=";
   };
 
-  cargoHash = "sha256-Ka751S1YhUQJCJYqD8bgjSm9IZPaBNg50DNDhmROQzs=";  
+  cargoHash = "sha256-gy/XDPN2Jxqw7TQsXo2YY8WKxm0n+g9tmsLhfQl977k=";
 
   buildInputs = [
     openssl
